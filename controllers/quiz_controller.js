@@ -28,9 +28,20 @@ exports.load = function(req,res,next,quizId) {
 
 //GET /quizes
 exports.index = function(req,res) {
-	models.Quiz.findAll().then(function(quizes){
-		res.render('quizes/index', {quizes:quizes});
-	})
+	//Si se indica un término de búsqueda, se realiza la búsqueda
+	if (typeof req.query.search != 'undefined'){
+		//Se incluyen los operadores % para hacer la búsqueda con cualquier aparición de los términos
+		var search = req.query.search;
+		search = '%'+search.replace(' ','%')+'%';
+		models.Quiz.findAll({where: ["pregunta like ?", search]}).then(function(quizes){
+			res.render('quizes/index', {quizes:quizes});
+		});
+	}
+	else {
+		models.Quiz.findAll().then(function(quizes){
+			res.render('quizes/index', {quizes:quizes});
+		});
+	}
 };
 
 //GET /quizes/:id
