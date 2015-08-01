@@ -4,7 +4,7 @@ body {
   font: 16px Georgia, serif;
 }
 
-#page-wrap {margin:2% auto; color:white;}
+#page-wrap {margin:2% auto; color:#000;}
 #page-wrap > .main {border: 1px solid #999; padding:1%:}
 
 section > div {padding:20px;}
