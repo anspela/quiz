@@ -1,6 +1,17 @@
 <table>
+	<tr><td colspan="3"><form method="get" action=""><label>Buscador de preguntas</label><input type="text" name="search"/><input type="submit" value="Buscar"/></form></td><td colspan="2" style="width:auto"><a href="/quizes/new"><button type="button">Crear pregunta</button></a></td></tr>
+	<tr><td colspan="5"><br /><hr></td>
 <% var i; for (i=0;i<quizes.length; i++) { %>
-	<tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td></tr>
-<% } %>
-	<tr><td><form method="get" action=""><label>Buscador de preguntas</label><input type="text" name="search"/><input type="submit" value="Buscar"/></form></td></tr>
+	<tr>
+		<td style="text-align:left;padding-left:2em"colspan="2"><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
+		<td><b>(<%= quizes[i].tema %>)</b></td>
+		<td><a href="quizes/<%= quizes[i].id%>/edit"><button>Editar</button></a></td>
+		<td>
+			<form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
+				<button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
+				Eliminar
+				</button>
+			</form>
+		</td>
+<% } %>	
 </table>
