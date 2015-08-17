@@ -41,7 +41,7 @@ app.use(function(req,res,next){
 //Autologout
 app.use(function(req,res,next){
 	if (req.session.user)
-		if ((Date.now() - req.session.user.lastAccess)>12000) {
+		if ((Date.now() - req.session.user.lastAccess)>120000) {
 			//Se elimina la sesion si se ha superado el tiempo			
 			delete req.session.user;
 			res.redirect("/login");
