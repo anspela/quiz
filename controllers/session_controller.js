@@ -32,7 +32,7 @@ exports.create = function(req,res) {
 		
 		//Se crea req.session.user y se guardan los cambios id y username
 		//La sesión se define por la existencia de req.session.user
-		req.session.user = {id:user.id, username:user.username};
+		req.session.user = {id:user.id, username:user.username, lastTime:Date.now()};		
 		res.redirect(req.session.redir.toString()); //Se redirige a la página anterior de login
 	});
 };
